@@ -42,17 +42,50 @@ The transceiver performs end-to-end digital communication, including pseudo-rand
 
 ---
 
-
 # Simulation Results
 
-The complete OFDM transceiver was verified through RTL simulation in **Xilinx Vivado**, validating:
+## 1. QPSK Symbol Generation
 
-- LFSR pseudo-random data generation
-- QPSK modulation and demodulation
-- AXI-Stream handshaking
-- FFT/IFFT frame processing
-- Cyclic Prefix insertion and removal
-- End-to-end OFDM data recovery
+- Generated pseudo-random 2-bit symbols using an LFSR and successfully mapped them into QPSK I/Q values.
+- Verified correct symbol generation and `symbol_valid` assertion through RTL simulation.
+
+> **Waveform:** <img width="1909" height="250" alt="ofdm1" src="https://github.com/user-attachments/assets/d8a48da9-a982-4782-a60a-5935c7f8bc40" />
+
+---
+
+## 2. IFFT Processing with AXI-Stream Interface
+
+- Successfully transferred OFDM symbols to the IFFT IP using `TVALID`, `TREADY`, and `TLAST` handshake signals.
+- Verified correct time-domain OFDM sample generation and frame synchronization.
+
+> **Waveform:** <img width="1913" height="539" alt="ofdm2" src="https://github.com/user-attachments/assets/68f10b82-2a41-44b1-a2e4-1697282bb460" />
+
+---
+
+## 3. Cyclic Prefix (CP) Insertion
+
+- Stored IFFT output samples into BRAM and appended the final samples as the cyclic prefix.
+- Verified correct write/read pointer operation and CP generation before transmission.
+
+> **Waveform:** <img width="1920" height="236" alt="ofdm3" src="https://github.com/user-attachments/assets/ae2db5d2-893f-4852-81ef-7e90321d81eb" />
+
+---
+
+## 4. FFT Processing and OFDM Symbol Recovery
+
+- Processed received OFDM symbols through the FFT IP using AXI-Stream protocol.
+- Verified successful frequency-domain recovery and proper FFT output synchronization.
+
+> **Waveform:** <img width="1920" height="411" alt="ofdm4" src="https://github.com/user-attachments/assets/74e5264c-64f0-4bba-90f3-9cf2da3675dd" />
+
+---
+
+## 5. QPSK Demodulation and Data Recovery
+
+- Successfully demodulated recovered I/Q samples into the original 2-bit QPSK symbols.
+- Verified complete end-to-end OFDM communication by matching transmitted and recovered data bits.
+
+> **Waveform:** <img width="1896" height="246" alt="ofdm5" src="https://github.com/user-attachments/assets/89d42413-af20-4151-bfba-440e98b85a1b" />
 
 ---
 
@@ -75,15 +108,5 @@ The complete OFDM transceiver was verified through RTL simulation in **Xilinx Vi
 - Digital Broadcasting
 - Broadband Wireless Communication Systems
 
----
 
-
-## 📷 Project Images
-
-- OFDM Transceiver Architecture
-- RTL Simulation Waveforms
-- AXI-Stream Handshake Verification
-- FFT/IFFT Processing Results
-- Cyclic Prefix Insertion & Removal
-- FPGA Implementation
 
