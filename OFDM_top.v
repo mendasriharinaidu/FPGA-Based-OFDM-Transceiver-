@@ -37,7 +37,7 @@ output [1:0]bits_out;
 
 
 LFSR a(clk,start,symbol_valid,parallel_out);
-QPSK_Mod b(clk,parallel_out,i,q);
+QPSK_Mod b(parallel_out,i,q);
 axi_stream c(clk,i,q,symbol_valid,t_data,t_valid,t_last,t_ready,config_valid,config_ready,data_out,last2,valid2,ready2);
 cyclic_prefix d(clk,valid2,last2,data_out,cycle,wr,rd,wr_addr,rd_addr,final_out,valid_out);
 
