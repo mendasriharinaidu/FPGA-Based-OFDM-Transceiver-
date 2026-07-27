@@ -67,21 +67,6 @@ The complete OFDM transceiver was verified through RTL simulation in **Xilinx Vi
 
 ---
 
-# Learning Outcomes
-
-This project provided practical experience in:
-
-- FPGA-based wireless communication system design
-- OFDM transmitter and receiver architecture
-- Integration of vendor IP cores with custom RTL
-- AXI-Stream interface design and verification
-- High-speed digital signal processing on FPGA
-- Cyclic Prefix implementation using BRAM
-- Hardware implementation of QPSK modulation and demodulation
-- End-to-end OFDM communication system development
-
----
-
 # Applications
 
 - Wi-Fi (IEEE 802.11)
