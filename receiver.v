@@ -86,3 +86,32 @@ QPSK_Demod f(clk,data_out,i,q,bits_out);
 
 endmodule
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+module QPSK_Demod(clk,data_in,i,q,bits_out);
+input clk;
+input [15:0]data_in;
+output signed[7:0]i,q;
+output reg [1:0]bits_out;
+
+assign i=data_in[15:8];
+assign q=data_in[7:0];
+
+always@(*)
+begin
+if(i==8'd8 && q==8'd8)
+bits_out<=2'b00;
+else if(i==-8'd8 && q==8'd8)
+bits_out<=2'b01;
+else if(i==8'd8 && q==-8'd8)
+bits_out<=2'b10;
+else if(i==-8'd8 && q==-8'd8)
+bits_out<=2'b11;
+else
+bits_out<=2'b00;
+end 
+
+endmodule
+
+
+
