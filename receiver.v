@@ -82,13 +82,13 @@ xfft_1 f2(.aclk(clk),
           .event_data_in_channel_halt(),
           .event_data_out_channel_halt());  
 
-QPSK_Demod f(clk,data_out,i,q,bits_out);
+QPSK_Demod f(data_out,i,q,bits_out);
 
 endmodule
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-module QPSK_Demod(clk,data_in,i,q,bits_out);
+module QPSK_Demod(data_in,i,q,bits_out);
 input [15:0]data_in;
 output signed[7:0]i,q;
 output reg [1:0]bits_out;
