@@ -22,23 +22,6 @@ The transceiver performs end-to-end digital communication, including pseudo-rand
 
 ---
 
-# System Architecture
-
-```
-               TRANSMITTER
-+----------------------------------------------+
-| LFSR → QPSK Modulator → IFFT → CP Insertion  |
-+----------------------------------------------+
-                      │
-                OFDM Channel
-                      │
-+----------------------------------------------+
-| CP Removal → FFT → QPSK Demodulator          |
-+----------------------------------------------+
-                 RECEIVER
-```
-
----
 
 # Project Modules
 
