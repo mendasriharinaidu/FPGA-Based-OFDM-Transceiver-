@@ -89,7 +89,6 @@ endmodule
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 module QPSK_Demod(clk,data_in,i,q,bits_out);
-input clk;
 input [15:0]data_in;
 output signed[7:0]i,q;
 output reg [1:0]bits_out;
@@ -97,19 +96,15 @@ output reg [1:0]bits_out;
 assign i=data_in[15:8];
 assign q=data_in[7:0];
 
-always@(*)
-begin
-if(i==8'd8 && q==8'd8)
-bits_out<=2'b00;
-else if(i==-8'd8 && q==8'd8)
-bits_out<=2'b01;
-else if(i==8'd8 && q==-8'd8)
-bits_out<=2'b10;
-else if(i==-8'd8 && q==-8'd8)
-bits_out<=2'b11;
-else
-bits_out<=2'b00;
-end 
+always @(*) 
+    begin
+      case ({data_in[15], data_in[7]})
+      2'b00: bits_out = 2'b00; // I >= 0, Q >= 0 (Quadrant 1)
+      2'b10: bits_out = 2'b01; // I < 0,  Q >= 0 (Quadrant 2)
+      2'b01: bits_out = 2'b10; // I >= 0, Q < 0  (Quadrant 4)
+      2'b11: bits_out = 2'b11; // I < 0,  Q < 0  (Quadrant 3)
+      endcase
+    end
 
 endmodule
 
