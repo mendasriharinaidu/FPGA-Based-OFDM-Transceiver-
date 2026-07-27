@@ -1,5 +1,4 @@
-module QPSK_Mod(clk,in,i,q);
-input clk;
+module QPSK_Mod(in,i,q);
 input [1:0]in;
 output reg signed[7:0]i,q;
 
